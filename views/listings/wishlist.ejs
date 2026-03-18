@@ -1,0 +1,180 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <% if (messages.success) { %>
+    <div class="alert alert-success alert-dismissible fade show">
+      <%= messages.success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  <% if (messages.error) { %>
+    <div class="alert alert-danger alert-dismissible fade show">
+      <%= messages.error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  <h1 class="mb-4">My Wishlist</h1>
+  
+  <% if (wishlist.length === 0) { %>
+    <div class="alert alert-info">
+      Your wishlist is empty. Start adding listings you love!
+    </div>
+  <% } else { %>
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+      <% wishlist.forEach(listing => { %>
+        <div class="listing-card position-relative mb-4">
+          <!-- Remove from wishlist button (top-right corner) -->
+          <form 
+            action="/listings/wishlist/<%= listing._id %>?_method=DELETE" 
+            method="POST"
+            class="remove-wishlist-form"
+          >
+            <button type="submit" class="btn-remove-wishlist" title="Remove from wishlist">
+              <i class="fa-solid fa-heart-circle-xmark"></i>
+            </button>
+          </form>
+
+          <a href="/listings/<%= listing._id %>" class="listing-link">
+          <div class="property-images swiper">
+          
+          <div class="swiper-wrapper">
+          <% if (listing.images && listing.images.length > 0) { %>
+            <% for (let i = 0; i < listing.images.length; i++) { %>
+              <% if (listing.images[i] && listing.images[i].url) { %>
+                <div class="swiper-slide">
+                  <img
+                    src="<%= listing.images[i].url.replace('/upload', '/upload/w_400') %>"
+                    class="card-img-top" 
+                    alt="listing_image" 
+                    style="height: 18.5rem;"
+                  />
+
+                </div>
+                <div class="card-img-overlay"></div>
+              <% } %>
+            <% } %>
+            <div class="card-img-overlay"></div>
+          <% } %>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button swiper-button-next">
+            <i class="fa-solid fa-angle-right icon-a"></i>
+          </div>
+          <div class="swiper-button swiper-button-prev">
+            <i class="fa-solid fa-angle-left icon-a"></i>
+          </div> 
+          </div> 
+            
+            <div class="card-body mt-3 mb-3">
+              <p class="card-text">
+               <b> <%= listing.title %></b> <br>
+                <%= listing.location %>,<%= listing.country %> <br>
+                &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                <i class="tax-info">&nbsp; + 18% GST</i>
+              </p>
+            </div>
+          </a>
+        </div>
+      <% }); %>
+    </div>
+  <% } %>
+</div>
+
+<script src="/js/script.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.remove-wishlist-form').forEach(form => {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const button = this.querySelector('button');
+      const listingCard = this.closest('.listing-card');
+      const wishlistContainer = document.querySelector('.row');
+
+      // Show spinner in button
+      button.disabled = true;
+      const originalContent = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+      try {
+        const response = await fetch(this.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ _method: 'DELETE' })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Animate fade-out
+          listingCard.style.transition = 'all 0.4s ease';
+          listingCard.style.transform = 'scale(0.95)';
+          listingCard.style.opacity = '0';
+
+          setTimeout(() => {
+            listingCard.remove();
+            showFlashMessage('success', 'Item removed from your wishlist.');
+
+            const remainingItems = document.querySelectorAll('.listing-card');
+            if (remainingItems.length === 0) {
+              setTimeout(() => {
+                window.location.href = '/listings/wishlist';
+              }, 1000); // Wait before redirect
+            }
+          }, 400);
+        } else {
+          showFlashMessage('danger', result.message || 'Something went wrong.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showFlashMessage('danger', 'Network error - please try again.');
+      } finally {
+        button.disabled = false;
+        button.innerHTML = originalContent;
+      }
+    });
+  });
+
+  function showFlashMessage(type, message) {
+    // Remove existing messages
+    document.querySelectorAll('.custom-flash').forEach(el => el.remove());
+
+    // Scroll to top so user sees message
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Create alert box
+    const flashDiv = document.createElement('div');
+    flashDiv.className = `custom-flash alert alert-${type} alert-dismissible fade show`;
+    flashDiv.role = 'alert';
+    flashDiv.innerHTML = `<strong><i class="fas fa-check-circle me-3"></i>${message}</strong>`;
+
+    // Style & position like an e-commerce floating alert
+    Object.assign(flashDiv.style, {
+      position: 'fixed',
+      top: '100px',
+      left: '40%',
+      zIndex: '1050',
+      padding: '1rem 1.5rem',
+      borderRadius: '8px',
+      boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+      maxWidth: '400px',
+      fontSize: '0.95rem'
+    });
+
+    document.body.appendChild(flashDiv);
+
+    // Auto dismiss after 3 seconds
+    setTimeout(() => {
+      flashDiv.classList.remove('show');
+      flashDiv.classList.add('hide');
+      setTimeout(() => flashDiv.remove(), 300);
+    }, 1000);
+  }
+});
+</script>
+
+

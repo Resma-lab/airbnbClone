@@ -1,0 +1,730 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+} 
+
+.container{
+    flex: 1;
+}
+
+/* Header navbar part */
+.navbar{
+    height: 5.2rem;
+    background-color: white;
+}
+
+ .navbar-brand{    /* for the logo */
+    height: 5rem;
+    width: 6rem;
+    margin-left: 4.5rem;
+}
+
+/* Search styling like Airbnb */
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 50px;
+    background-color: #fff;
+    box-shadow: 0 7px 12px rgba(0,0,0,0.055);
+    padding: 0.6rem 1.2rem;
+    gap: 3px;
+    margin-left: 20rem;
+    width: 22.5rem;
+    height: 3rem;
+    flex-wrap: nowrap;
+}
+
+.search:hover {
+    box-shadow: 0 7px 12px rgba(0,0,0,0.1);
+}
+
+.search button {
+    font-size: 0.9rem;
+    font-weight: 560;
+    background: none;
+    border: none;
+    white-space: nowrap;
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+.search span {
+    opacity: 0.1;
+    font-size: 1.5rem;
+    padding: 0 3px;
+    user-select: none;
+}
+
+.search-icon {
+    background-color: #FF5A5F;
+    color: white;
+    border-radius: 50%;
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 0.4rem;  /* Ensures it moves to the end */
+}
+
+/* Right-bar styles */
+.Airbnb-home {
+    font-size: 0.9rem !important; 
+    font-weight: 560 !important;
+    margin-right: 20px !important;
+    margin-top: 5px !important;
+}
+
+.Airbnb-home:hover {
+    background-color: rgba(0,0,0,0.055) !important;
+    border-radius: 50px !important;
+}
+
+.dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 7px 12px rgba(0,0,0,0.055);
+    padding: 0.2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 5rem;
+    margin-top: 5px;
+    button{
+        .user-icon {
+           opacity: 0.6;
+           font-size: 2.2rem;
+        }
+        &:after {
+            display: none !important;
+        }
+    }
+    ul {
+        width: 15rem !important;
+        border: none !important;
+        box-shadow: 0 0 12px rgba(0,0,0,0.2) !important;
+        margin-top: 1rem !important;
+        margin-left: -10rem !important;
+        font-size: 0.97rem !important; 
+        li{
+            a{
+                display: block;
+                padding: 10px 15px;
+            }
+        }
+    }
+}
+
+.sign-up {
+    font-weight: 560 !important;
+}
+
+.dropdown-toggle {
+    border:none !important;
+}
+
+/* Add these new styles for the avatar */
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  margin-left: 7px;
+  margin-top: 7.5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  margin-right: 35px;
+  margin-bottom: 6px;
+  border-radius: 50%; 
+}
+
+.initials-circle {
+  position: absolute;
+  margin-right: 35px;
+  margin-bottom: 6px;   
+  width: 100%;
+  height: 100%;
+  /* background-color: #ff385c; */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+.user-c{
+  position: absolute;
+  margin-right: 35px;
+  margin-bottom: 6px;
+}
+
+/* Profile page styles - won't affect navbar */
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ff385c;
+  margin-bottom: 20px;
+}
+
+.initials-large {
+  width: 150px;
+  height: 150px;
+  /* background-color: #ff385c; it will set by js*/
+  color: white;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+}
+
+.profile-left {
+    padding: 2rem;
+    margin-bottom: 55px;
+}
+
+.profile-right{
+    margin-left: 35px;
+    height: 432px !important;
+}
+
+.btn-left{
+    background-color: #6C5CE7 !important;
+    color: #ecf5f7 !important;
+}
+
+.btn-right{
+    position: relative;
+    background-color: #d64755 !important;
+    color: #ecf5f7 !important;
+    margin-bottom: 90px !important;
+    margin-left: 15px !important;
+}
+
+.profile-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.dropdown:hover {
+    box-shadow: 0 7px 12px rgba(0,0,0,0.1);
+}
+
+.dropdown ul{
+    li {
+        a{
+            display: inline-block;
+            padding: 10px;
+
+        }
+    }
+}
+
+.nav-link{
+    color: #222 !important;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info-links, .f-info-socials,
+.f-info-brand
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.f-info{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* Cards */
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 0.5rem !important;
+    width: 16rem !important;
+    object-fit: cover !important;
+    height: 16rem !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text  {
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    color: #000 !important;
+}
+
+.listing-link {
+    text-decoration: none !important;
+}
+
+/* Card Effect */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2; 
+    background-color: white
+}
+
+/* New Page and Edit Page */
+.add-btn, .edit-btn, .dlt-btn{
+    background-color: #FF5A5F !important;
+    border: none !important;
+}
+
+.add-btn:hover, .edit-btn:hover, .dlt-btn:hover{
+    background-color: #b52328 !important;
+    border: none !important;
+}
+
+/* Show Page */
+.show-img{
+    height: 53vh;
+    width: 70rem !important;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+/* Map */
+#map{
+    height: 500px;
+    width: 95%;
+    border-radius: 10px;
+}
+
+/* Filters */
+.navigation {
+    .slide-nav {
+        .main-menu {
+            padding: 0 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+           .swiper {
+                overflow: visible;
+                .swiper-slide {
+                width: auto;
+                text-align: center;
+                transition: color 0.3s ease;
+                padding-right: 1rem;
+                .swiper-slide:hover{
+                    cursor: pointer;
+                    color: #000;
+                }
+                i {
+                    display: inline-block;
+                    font-size: 1.2rem;
+                    opacity: 0.6;
+                }
+                p{
+                    white-space: nowrap;
+                    font-size: 0.75rem;
+                    margin-top: 5px;
+                }
+                &:hover {
+                    font-weight: 600;
+                    i:hover{
+                        opacity: 1;
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 3px;
+                        background-color: #7B3FE4;
+                        border-radius: 5px;
+                        bottom: 0;
+                        left: 0;
+                        transform: scaleX(1);
+                    }
+                }
+            }
+            .swiper-button {
+                background: white;
+                height: 100%;
+                top: 22px;
+                &:after {
+                    display: none !important;
+                }
+                .icon-a {
+                    font-size: 1.5rem;
+                    color: #000;
+                    margin-bottom: 10px;
+                }
+                &.swiper-button-next {
+                    right: -30px;
+                    left: auto;
+                }
+                &.swiper-button-prev {
+                    left: -30px;
+                    right: auto;
+                }
+            }
+            }
+       }
+    }
+    .filter {
+        margin-bottom: 1rem !important;
+        margin-left: 1rem !important;
+        a{
+            padding: 12px 15px;
+            border: solid 1px rgba(0,0,0,0.14);
+            border-radius: 12px;
+            color: #000;
+            opacity: 1;
+            font-size: 13px;
+            font-weight: 700;
+            height: 48px;
+            &:hover {
+                background-color: transparent;
+                color: #000;
+                border: solid 1px rgba(0,0,0,0.2);
+                box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+            }
+            i{
+                margin-top: 4px;
+            }
+        }
+    }
+    .tax-toggle{
+        white-space: nowrap;
+        padding: 12px 23px 0 14px;
+        border: solid 1px rgba(0,0,0,0.14);
+        border-radius: 12px;
+        color: #000;
+        opacity: 1;
+        font-size: 13px;
+        font-weight: 700;
+        height: 48px;
+        width: 17rem;
+        margin-bottom: 1rem !important;
+        &:hover {
+            background-color: transparent;
+            color: #000;
+            border: solid 1px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+        .toggle-btn{
+            color: white;
+            padding: 0.6rem;
+            font-size: 1rem;
+            margin-top : 0px !important; 
+        }
+    }
+}
+
+.tax-info {
+    display: none;
+}
+
+.swiper-button {
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    i{
+        color: #000;
+        font-size: 16px;
+    }
+    &:after{
+        display: none;
+    }
+    &.swiper-button-disabled {
+        opacity: 0;
+    }               
+}           
+.swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: white;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+}
+
+.swiper:hover .swiper-button {
+  opacity: 1;
+}
+
+.fa-heart {
+    top: 30px;
+    right: 30px;
+}
+
+.show-images {
+    position: absolute;
+    bottom: 12.4rem;
+    right: 1rem;
+    display: flex;
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 3px;
+    height: 1.7rem;
+    margin-top: 10px;
+    justify-items: center;
+    align-items: center;
+    margin-right: 17px;
+    padding: 7px;
+    i{
+        margin-right: 9px;
+        margin-top: 1px;
+        font-size: 1rem;
+    }
+    p{
+        margin-top: 13px;
+        font-size: 1rem;
+    }
+}
+.delete-image{
+    position: absolute;
+    color: #FF5A5F;
+    background-color: whitesmoke;
+    top: 1rem;
+    right: 1rem;
+    width: 1.5rem;
+    border-radius: 3px;
+    i{
+        margin-left: 5px;
+    }
+}
+.delete-image:hover{
+    box-shadow: 0 3px 3px #383535;
+}
+
+.dot {
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 7px 12px rgba(0,0,0,0.055);
+    padding: 0.2rem;
+    height: 1.5rem;
+    width: 10px !important;
+    margin-left: 63rem;
+    margin-bottom: 10px;
+    button{
+        .imge {
+            position: absolute;
+            height: 23px;
+            width: 19px;
+            right: 2px;
+            top: 1.5px;
+        }
+        &:after {
+            display: none !important;
+        }
+    }
+    ul {
+        width: 6rem !important;
+        border: none !important;
+        box-shadow: 0 0 12px rgba(0,0,0,0.2) !important;
+        margin-top: 1rem !important;
+        margin-left: -9rem !important;
+        font-size: 0.97rem !important; 
+        li{
+            a{
+                display: block;
+                padding: 10px 15px;
+            }
+        }
+    }
+}
+
+.wishlist{
+    text-decoration: none;
+    color: #000 !important;
+    font-size: 1.7rem;
+    opacity: .7;
+    background: none;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.wishlist .fa-heart {
+  transition: color 0.3s ease;
+}
+
+.wishlist:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.wishlist-index{
+  position: absolute;
+  color: #fff !important;
+  top: 8px;
+  right: 24px;
+  z-index: 10;
+  font-size: 1.4rem; 
+  border-radius: 50%;
+  padding: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+
+
+}
+
+.wishlist-index .fa-heart {
+  transition: color 0.3s ease;
+}
+
+.wishlist-index:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+/* for delete */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* for flash message wishlist */
+.flash-message {
+  position: fixed;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  color:  #ecf5f7;
+  background-color: #6C5CE7; /* Airbnb Coral */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition:
+    top 0.5s ease,
+    opacity 0.5s ease,
+    transform 0.3s ease;
+  backdrop-filter: blur(4px); /* for glass effect */
+}
+
+.flash-message.show {
+  top: 30px;
+  opacity: 1;
+  transform: translateX(-50%) scale(1.02);
+}
+
+/* remove wishlist */
+.listing-card {
+  position: relative;
+}
+
+.btn-remove-wishlist {
+  position: absolute;
+  top: 12px;
+  right: 19px;
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.btn-remove-wishlist:hover {
+  background-color: #ff4d4d;
+}
+
+.btn-remove-wishlist i {
+  color: #dc3545;
+  font-size: 1.3rem;
+}
+
+.btn-remove-wishlist:hover i {
+  color: white;
+}
+
+

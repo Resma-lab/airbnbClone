@@ -1,0 +1,167 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5 profile-container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card profile-card profile-left">
+        <div class="card-body text-center">
+          <% if (currentUser.profilePicture && currentUser.profilePicture.url) { %>
+            <img src="<%= currentUser.profilePicture.url %>" class="profile-img" alt="Profile Picture" id="profileImage">
+          <% } else { %>
+            <div class="initials-large" id="profileInitials">
+              <%= currentUser.username.charAt(0).toUpperCase() %>
+            </div>
+          <% } %>
+          
+          <h4 class="mt-3"><%= currentUser.username %></h4>
+          <p class="text-muted"><%= currentUser.email %></p>
+          
+          <form action="/profile/upload" method="post" enctype="multipart/form-data" class="mt-4" id="uploadForm">
+            <div class="mb-3">
+              <input type="file" class="form-control" name="profilePicture" accept="image/*" id="fileInput" required>
+            </div>
+            <button type="submit" class="btn btn-left">
+              <% if (currentUser.profilePicture && currentUser.profilePicture.url) { %>
+                update pic
+              <% } else { %>
+                upload pic
+              <% } %>
+            </button>
+          </form>
+          
+          <% if (currentUser.profilePicture && currentUser.profilePicture.url) { %>
+            <button type="button" class="btn btn-danger mt-3" id="removePictureBtn">
+              Remove <i class="fas fa-trash-alt ms-2"></i>
+            </button>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-7 row ">
+      <div class="card profile-right">
+        <div class="card-header">
+          <h5>Your Information</h5>
+        </div>
+        <div class="card-body">
+          <form method="post" action="/profile/update">
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" value="<%= currentUser.username %>">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" value="<%= currentUser.email %>">
+            </div>
+            <button type="submit" class="btn btn-right">Update Profile</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const colorPalette = [
+      "#FF6B6B", "#FF8E72", "#FFCA3A", "#8AC926", "#1982C4", "#6A4C93",
+      "#F72585", "#7209B7", "#3A0CA3", "#4361EE", "#4CC9F0", "#1DD3B0",
+      "#FFC107", "#FF5722", "#009688", "#3F51B5", "#E91E63", "#795548",
+      "#9C27B0", "#673AB7", "#2196F3", "#00BCD4", "#CDDC39", "#607D8B"
+    ];
+
+    // Get the username from EJS
+    const username = "<%= currentUser.username %>";
+
+    // Generate consistent hash from username
+    function getColorFromUsername(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const index = Math.abs(hash) % colorPalette.length;
+      return colorPalette[index];
+    }
+
+    const color = getColorFromUsername(username);
+
+    // Apply to all initials elements
+    document.querySelectorAll('.initials-circle, .initials-large').forEach(el => {
+      el.style.backgroundColor = color;
+    });
+  });
+</script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const removePictureBtn = document.getElementById('removePictureBtn');
+
+  if (removePictureBtn) {
+    removePictureBtn.addEventListener('click', async function () {
+      const originalText = removePictureBtn.innerHTML;
+      removePictureBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Removing...';
+      removePictureBtn.disabled = true;
+
+      try {
+        const response = await fetch('/profile/remove-picture', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({})
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Request failed');
+        }
+
+        if (data.success) {
+          // Optional: brief flash message before redirect
+          showFlashMessage('success', data.message);
+
+          // Delay redirect by .5 seconds to show flash message
+          setTimeout(() => {
+            window.location.href = '/profile';
+          }, 500);
+        } else {
+          throw new Error(data.message);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showFlashMessage('danger', error.message);
+      } finally {
+        removePictureBtn.innerHTML = originalText;
+        removePictureBtn.disabled = false;
+      }
+    });
+  }
+
+  function showFlashMessage(type, message) {
+    const existingAlerts = document.querySelectorAll('.alert-dismissible');
+    existingAlerts.forEach(alert => alert.remove());
+
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.top = '20px';
+    alertDiv.style.right = '20px';
+    alertDiv.style.zIndex = '9999';
+    alertDiv.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+
+    document.body.appendChild(alertDiv);
+
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 5000);
+  }
+});
+</script>

@@ -1,0 +1,121 @@
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid"> 
+      <div class="logo"><a href="/listings"><img src="/images/Wanderlustlogo.png" alt="logo" class="navbar-brand"/></a></div>
+
+      <!-- Centered Search Box -->
+        <div class="search d-flex align-items-center">
+          <button class="btn">Anywhere</button>
+          <span>|</span>
+          <button class="btn">Any week</button>
+          <span>|</span>
+          <button class="btn" style="opacity: 0.6;">Add guests </button>
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+
+
+       <!-- Toggler for mobile -->
+      <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <!-- <div class="navbar-nav me-auto">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link" href="/listings">Explore</a>
+        </div> -->
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link Airbnb-home" href="/listings/new">Host with airbnb</a>
+
+          <div class="dropdown">
+            <button 
+              class="btn dropdown-toggle" 
+              type="button" 
+              id="dropdownMenuButton1" 
+              data-bs-toggle="dropdown" 
+              aria-expanded="false"
+            >
+              <div class="user-prof">
+                <div class="user-avatar">
+                  <% if (currentUser && currentUser.profilePicture && currentUser.profilePicture.url) { %>
+                    <img src="<%= currentUser.profilePicture.url %>" alt="Profile" class="profile-picture">
+                  <% } else if (currentUser) { %>
+                    <div class="initials-circle">
+                      <%= currentUser.username.charAt(0).toUpperCase() %>
+                    </div>
+                  <% } else { %>
+                    <div class="user-c">
+                      <i class="fa-solid fa-circle-user user-icon"></i>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item sign-up" href="/signup">Sign up</a></li>
+              <% if (currentUser) { %>
+              <li><a class="dropdown-item profile" href="/profile">Profile</a></li>
+              <% } %>
+              <li><a class="dropdown-item" href="/login">Log in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <% if (currentUser) { %>
+              <li><a href="/listings/wishlist" style="text-decoration: none; color: black;">Wishlist</a></li>
+              <% } %>
+              <li><a class="dropdown-item" href="/listings/new">Host with airbnb</a></li>
+              <li><a class="dropdown-item" href="#">Help</a></li>
+              <% if (currentUser) { %>
+              <li>
+                <a class="nav-link" href="/logout">Log out</a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+</nav>
+
+<% if (typeof currentUser !== 'undefined' && currentUser) { %>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const colorPalette = [
+      "#FF6B6B", "#FF8E72", "#FFCA3A", "#8AC926", "#1982C4", "#6A4C93",
+      "#F72585", "#7209B7", "#3A0CA3", "#4361EE", "#4CC9F0", "#1DD3B0",
+      "#FFC107", "#FF5722", "#009688", "#3F51B5", "#E91E63", "#795548",
+      "#9C27B0", "#673AB7", "#2196F3", "#00BCD4", "#CDDC39", "#607D8B"
+    ];
+
+    // Get the username from EJS
+    const username = "<%= currentUser.username %>";
+
+    // Generate consistent hash from username
+    function getColorFromUsername(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const index = Math.abs(hash) % colorPalette.length;
+      return colorPalette[index];
+    }
+
+    const color = getColorFromUsername(username);
+
+    // Apply to all initials elements
+    document.querySelectorAll('.initials-circle, .initials-large').forEach(el => {
+      el.style.backgroundColor = color;
+    });
+  });
+</script>
+<% } %>

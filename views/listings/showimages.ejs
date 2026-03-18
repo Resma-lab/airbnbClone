@@ -1,0 +1,65 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .show-all-images {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-container {
+    position: relative;
+    width: 70%;
+    margin-bottom: 1rem;
+  }
+
+  .image-container img {
+    padding: 0.5rem;
+    border-radius: 15px;
+    height: 53vh;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .delete-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  .delete-form button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: red;
+  }
+
+  .delete-form button:hover {
+    color: darkred;
+  }
+</style>
+
+<div class="offset-1 show-all-images">
+  <h1>All images</h1>
+  <% listing.images.forEach((image) => { %>
+    <% if (image && image.url && image.filename) { %>
+      <div class="image-container">
+        <form
+          class="delete-form"
+          method="POST"
+          action="/listings/<%= listing._id %>/deleteimages/<%= encodeURIComponent(image.filename.replace('wanderlust_DEV/', '')) %>?_method=DELETE"
+        >
+          <button>
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </form>
+        <img src="<%= image.url %>" alt="listing_image" />
+      </div>
+    <% } %>
+  <% }); %>
+</div>

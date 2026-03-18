@@ -1,0 +1,50 @@
+{
+  "engines": {
+    "node": "22.13.0"
+  },
+  "name": "airbnbclone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Resmarani",
+  "license": "ISC",
+  "description": "It is a Air bnb clone project. It is a web application that allows users to search for and book accommodations, similar to the popular platform Airbnb. The project is built using Node.js, Express, MongoDB, and EJS templating engine. Users can create an account, log in, and manage their bookings. The application also includes features such as searching for listings, viewing property details, and leaving reviews.",
+  "keywords": [
+    "Airbnb",
+    "clone",
+    "web",
+    "application",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "EJS"
+  ],
+  "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.16.1",
+    "bootstrap": "^5.3.3",
+    "cloudinary": "^1.21.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.7",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "joi": "^17.13.3",
+    "mapbox-gl": "^3.12.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0",
+    "path": "^0.12.7",
+    "react": "^19.0.0",
+    "router": "^2.2.0"
+  }
+}
