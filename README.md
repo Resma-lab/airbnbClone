@@ -1,147 +1,159 @@
-"# airbnbClone" 
-"# airbnbClone" 
 # 🏡 Airbnb Clone
 
-A full-stack **Airbnb-inspired accommodation booking platform** built using the **MERN stack**, designed to provide a smooth experience for discovering, listing, and managing stays.
+A full-stack **Airbnb-inspired accommodation booking web application** built with **Node.js, Express.js, MongoDB, and EJS**, featuring property listings, user authentication, reviews, and booking functionality.
 
 ## ✨ Features
 
-* 🔐 User authentication and authorization
+* 🔐 User registration and authentication
 * 🏠 Create, view, edit, and delete property listings
 * 🔎 Browse and explore available properties
-* 📍 Property details with location information
-* 🖼️ Property image management
-* 📅 Booking and reservation workflow
-* 👤 User-specific listing and booking management
-* ⭐ Review and rating functionality
+* 📄 Detailed property pages
+* 🖼️ Property image support
+* 📅 Booking/reservation functionality
+* ⭐ Ratings and reviews
+* 👤 User-specific listings and bookings
+* 🛡️ Authentication and authorization
 * 📱 Responsive user interface
-* ⚡ RESTful API architecture
+* ⚡ Dynamic server-side rendered pages
 
 ## 🛠️ Tech Stack
 
-**Frontend**
+### Frontend
 
-* React.js
 * HTML5
 * CSS3
 * JavaScript
+* EJS (Embedded JavaScript Templates)
 
-**Backend**
+### Backend
 
 * Node.js
 * Express.js
 
-**Database**
+### Database
 
 * MongoDB
 * Mongoose
 
-**Other**
+### Other Technologies
 
-* REST APIs
+* RESTful APIs
+* Express Middleware
 * Authentication & Authorization
 * Git & GitHub
 
-## 🏗️ Application Flow
+## 🏗️ Application Architecture
 
 ```text
-User
-  ↓
-React Frontend
-  ↓
-Express REST API
-  ↓
-Node.js Server
-  ↓
-MongoDB
+                    User
+                     │
+                     ▼
+             HTML / CSS / JS
+                     │
+                     ▼
+                   EJS
+                     │
+                     ▼
+              Express.js
+                     │
+                     ▼
+                Node.js
+                     │
+                     ▼
+                Mongoose
+                     │
+                     ▼
+                 MongoDB
 ```
 
-The frontend communicates with the backend through REST APIs, while MongoDB stores users, listings, bookings, and related application data.
+The application uses **EJS for server-side rendering**, while Express.js handles routing and backend logic. MongoDB stores application data such as users, listings, reviews, and bookings.
 
 ## 🚀 Getting Started
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone <your-repository-url>
 cd <project-folder>
 ```
 
-### 2. Install dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-If the project contains separate frontend and backend folders:
+### 3. Configure Environment Variables
 
-```bash
-cd frontend
-npm install
-
-cd ../backend
-npm install
-```
-
-### 3. Configure environment variables
-
-Create a `.env` file in the backend directory:
+Create a `.env` file in the project root:
 
 ```env
-MONGODB_URI=your_mongodb_connection_string
-SESSION_SECRET=your_session_secret
+MONGO_URL=your_mongodb_connection_string
+SECRET=your_session_secret
 ```
 
-Add any other environment variables required by your implementation.
+Add any additional environment variables required by your implementation.
 
-### 4. Start the application
+### 4. Start the Server
+
+Run the application using **nodemon**:
 
 ```bash
-npm start
+nodemon app.js
 ```
 
-For development:
+The application will start on the configured local port.
 
-```bash
-npm run dev
+For example:
+
+```text
+http://localhost:8080
 ```
 
 ## 📸 Screenshots
 
 Add screenshots of:
 
-* Home page
-* Property listing page
-* Property details
-* Login/Register
-* Booking flow
-* User dashboard
+* 🏠 Home page
+* 🔐 Login/Register page
+* 🏡 Property listings
+* 📄 Property details
+* ➕ Create listing page
+* ⭐ Reviews
+* 📅 Booking page
 
-## 💡 Key Learning
+## 🧠 Key Concepts Demonstrated
 
-This project strengthened my understanding of:
-
-* Full-stack MERN application development
-* REST API design
-* MongoDB data modeling
-* Authentication and authorization
+* MVC architecture
 * CRUD operations
-* Frontend-backend integration
-* Building scalable application structure
+* RESTful routing
+* Server-side rendering with EJS
+* MongoDB database operations
+* Mongoose schemas and relationships
+* Authentication and authorization
+* Express middleware
+* Form handling and validation
+* Session management
+* Error handling
+
+## 💡 What I Learned
+
+Building this project strengthened my understanding of **full-stack web development**, particularly backend development with Node.js and Express.js.
+
+I gained practical experience in designing RESTful routes, connecting applications with MongoDB, implementing authentication, handling CRUD operations, and rendering dynamic pages using EJS.
 
 ## 🔮 Future Improvements
 
 * 💳 Online payment integration
-* 🗺️ Interactive maps
-* 🔔 Real-time booking notifications
+* 🗺️ Interactive maps and location-based search
 * 💬 Host–guest messaging
+* 🔔 Real-time booking notifications
 * 🤖 AI-powered property recommendations
 * 📊 Host analytics dashboard
+* 📱 Progressive Web App support
 
-## 👨‍💻 Author
+## 👩‍💻 Author
 
-**Yijn Kjil**
+**Resmarani Bisoyi**
 
-Built with ❤️ using the MERN stack.
-
-
+Built with ❤️ using Node.js, Express.js, MongoDB & EJS.
